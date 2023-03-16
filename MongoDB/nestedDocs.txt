@@ -1,0 +1,38 @@
+Nested Documents
+A nested document is a mongoose schema that contains a field with the value being a completely separate mongoose schema.
+
+Simple Example using User Schema:
+const UserSchema = new mongoose.Schema(
+    {
+    fName: String;
+    lName: String;
+    friends: [UserSchema];
+    }
+)
+
+Now the User Schema in a bank account application:
+const UserSchema = new mongoose.Schema(
+    {
+        fName: String,
+        lName: String,
+        email: String,
+        password: String,
+        bankAccounts: [BankAccountSchema]
+    }, {timestamps: true}
+)
+
+Since each bank account can have many transactions, we can nest a TransactionSchema into our BankAccountSchema:
+const TransactionSchema: new mongoose.Schema(
+    {
+        amount: {type: Number, required: true},
+        vender: {type: String, required: true}
+    }, {timestamps: {createdAt: true} }
+);
+
+const BankAccountSchema = new mongoose.Schema(
+    {
+        accountType: {type: String, required: true},
+        balance: {type: Number, default: 0},
+        transactions: [TransactionSchema]
+    }, {timestamps: true}
+)
