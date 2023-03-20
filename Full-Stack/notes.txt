@@ -1,0 +1,33 @@
+Setting Up a Full Stack MERN Project!
+
+1. Create new project folder
+2. cd into the new project
+3. If you want to create this full stack app in a git repository, do the following:
+    git init                            //adds a .git hidden directory and initializes root folder as a local repo
+    echo node_modules/ > .gitignore     //creates a .gitignore file in the app's root that will ignore all node_modules
+4. Create your "server" folder
+5. cd into the new server folder
+6. Create a "server.js" file
+7. Modularize the server project by creating the following folders:
+    routes
+    controllers
+    config
+    models
+8. Create a new project within your server folder via "npm init -y"
+9. Install your dependencies "npm install express mongoose"
+10. Create your ".gitnore" file and add in "/node_modules"
+11. In the config folder, create your "mongoose.config.js" file
+
+
+
+11. In your server.js file, add the following code:
+    const express = require('express');
+    const app = express();
+    const port = 8000;
+        
+    app.listen(port, () => console.log(`Listening on port: ${port}`) );
+12. Now time to create the React project. cd back into the root folder of the project.
+13. When in the root folder, type "npx create-react-app client"
+    Now you will be running two different servers: your front end React server with live reloading and your Express server.
+14. 
+
