@@ -2,13 +2,16 @@ import React from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 
-const ProductForm = () => {
+const ProductForm = (props) => {
+
+    const { productList, setProductList } = props;
 
     const [product, setProduct] = useState({
         title: "",
         price: "",
         description: ""
     })
+
 
     const onChangeHandler = (e) => {
         setProduct({...product, [e.target.name]: e.target.value})
@@ -32,14 +35,20 @@ const ProductForm = () => {
         e.preventDefault()
         if (formValidator()) {
             axios.post('http://localhost:8000/api/products', product)
-                .then(res => console.log(res))
+                .then(res => {
+                    console.log(res);
+                    console.log(res.data);
+                    setProductList([...productList, res.data]);
+                    setProduct({});
+                })
                 .catch(err => console.log(err))
         }
     }
 
+
     return(
         <div>
-            <h1 className="col-md-6 offset-2">Prodct Manager</h1>
+            <h3 className="col-md-6 offset-2">Prodct Manager</h3>
             <form action="" className="col-md-6 offset-2" onSubmit={submitHandler}>
                 <div className="form-group">
                     <label htmlFor="title">Title:</label>

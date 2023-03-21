@@ -10,14 +10,14 @@ module.exports.findAllProducts = (req, res) => {
 // Create one product
 module.exports.createOneProduct = (req, res) => {
     Product.create( req.body )
-        .then(newProduct => res.json({ product: newProduct }))
+        .then(newProduct => res.json( newProduct ))
         .catch(err => res.json({ message: "Something went wrong", error: err }))
 }
 
 // Find on product
 module.exports.findOneProduct = (req, res) => {
     Product.findById( req.params.id )
-    .then(theProduct => res.json({ product: theProduct }))
+    .then(theProduct => res.json( theProduct ))
     .catch(err => res.json({ message: "Something went wrong", error: err }))
 }
 

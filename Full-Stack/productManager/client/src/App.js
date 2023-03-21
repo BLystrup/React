@@ -1,19 +1,28 @@
 import './App.css';
 import axios from 'axios';
 import { useEffect } from 'react';
-import ProductForm from './components/ProductForm';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Main from './views/Main';
+import ShowProduct from './components/ShowProduct';
+// import ProductForm from './components/ProductForm';
+// import ProductList from './components/ProductList';
 
 function App() {
 
-  useEffect(() => {
-    axios.get("http://localhost:8000/api/products")
-    .then(res => console.log(res.data))
-    .catch(err => console.log(err))
-  }, [])
+  // useEffect(() => {
+  //   axios.get("http://localhost:8000/api/products")
+  //   .then(res => console.log(res.data))
+  //   .catch(err => console.log(err))
+  // }, [])
 
   return (
     <div className="App">
-      <ProductForm />
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Main/>} path="api/products" default />
+        <Route element={<ShowProduct/>} path="api/products/:id"/>
+      </Routes>
+    </BrowserRouter>
     </div>
   );
 }
